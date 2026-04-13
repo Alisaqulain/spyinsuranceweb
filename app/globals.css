@@ -3,6 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Brand (from logo) */
+  --brand-dark: #2f3646;
+  --brand-green: #8cc63f;
+  --brand-muted: #f2f4f9;
 }
 
 @theme inline {
@@ -23,4 +28,112 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Home: motion-safe entrance + ambient motion */
+@keyframes home-float-orb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(22px, -18px) scale(1.12);
+  }
+}
+
+@keyframes home-float-orb-alt {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-18px, 16px) scale(1.08);
+  }
+}
+
+@keyframes home-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes home-blob-breathe {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.07) rotate(4deg);
+  }
+}
+
+.home-float-orb-a {
+  animation: home-float-orb 16s ease-in-out infinite;
+}
+
+.home-float-orb-b {
+  animation: home-float-orb-alt 20s ease-in-out infinite 1s;
+}
+
+.home-blob-live {
+  animation: home-blob-breathe 5.5s ease-in-out infinite;
+}
+
+.home-hero-enter {
+  opacity: 0;
+  animation: home-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.home-hero-enter-1 {
+  animation-delay: 0.06s;
+}
+.home-hero-enter-2 {
+  animation-delay: 0.16s;
+}
+.home-hero-enter-3 {
+  animation-delay: 0.28s;
+}
+.home-hero-enter-4 {
+  animation-delay: 0.4s;
+}
+.home-hero-enter-5 {
+  animation-delay: 0.52s;
+}
+
+/* Scroll-triggered stagger (used with ScrollFlyStagger) */
+.scroll-fly-stagger-item {
+  opacity: 0;
+  transform: translate(22px, 42px);
+  transition:
+    opacity 0.78s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.78s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-fly-stagger-root[data-visible="true"] .scroll-fly-stagger-item {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-float-orb-a,
+  .home-float-orb-b,
+  .home-blob-live {
+    animation: none;
+  }
+
+  .home-hero-enter {
+    opacity: 1;
+    animation: none;
+  }
+
+  .scroll-fly-stagger-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
