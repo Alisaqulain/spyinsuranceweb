@@ -1,4 +1,20 @@
+import type { Metadata } from "next";
+import { getSiteUrl } from "../lib/site";
 import { ClaimAssistanceForm } from "./ui/ClaimAssistanceForm";
+
+const siteUrl = getSiteUrl();
+
+export const metadata: Metadata = {
+  title: "Claim assistance",
+  description:
+    "Claim assistance from SPRY INSURANCE PVT LTD — help with health, motor, travel, and other insurance claims in India.",
+  alternates: { canonical: `${siteUrl}/claim-assistance` },
+  openGraph: {
+    url: `${siteUrl}/claim-assistance`,
+    title: "Claim assistance | SPRY INSURANCE PVT LTD",
+    description: "Submit your claim details and our team will guide you.",
+  },
+};
 
 export default function ClaimAssistancePage() {
   return (

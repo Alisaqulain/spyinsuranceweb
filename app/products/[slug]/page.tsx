@@ -1,12 +1,37 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductDetails } from "../../lib/product-details";
+import { getSiteUrl } from "../../lib/site";
 import { ProductEnquiryForm } from "./ProductEnquiryForm";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const product = getProductDetails(slug);
+  if (!product) return { title: "Insurance product" };
+
+  const base = getSiteUrl();
+  const url = `${base}/products/${slug}`;
+
+  return {
+    title: product.title,
+    description: `${product.shortDescription} Get a quote from SPRY INSURANCE PVT LTD — ${product.category}.`,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      url,
+      title: `${product.title} | SPRY INSURANCE PVT LTD`,
+      description: product.shortDescription,
+    },
+  };
+}
 
 export default async function ProductDetailsPage({ params }: PageProps) {
   const { slug } = await params;
@@ -14,7 +39,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
   if (!product) notFound();
 
   return (
-    <main className="mx-auto w-full max-w-[1200px] px-4 py-10 sm:px-6 sm:py-12">
+    <main className="mx-auto w-full max-w-[1200px] px-4 py-8 sm:px-6 sm:py-12">
       <nav className="text-sm text-zinc-600">
         <Link href="/" className="hover:text-zinc-950">
           Home
@@ -23,12 +48,12 @@ export default async function ProductDetailsPage({ params }: PageProps) {
         <span className="font-semibold text-zinc-900">{product.label}</span>
       </nav>
 
-      <header className="mt-6 grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
+      <header className="mt-5 grid gap-6 sm:mt-6 sm:gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
         <div>
           <p className="text-sm font-bold tracking-wide text-[var(--brand-green)]">
             {product.category}
           </p>
-          <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-[var(--brand-dark)] sm:text-4xl">
+          <h1 className="mt-2 text-[1.65rem] font-extrabold leading-tight tracking-tight text-[var(--brand-dark)] sm:text-4xl">
             {product.title}
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-zinc-600 sm:text-lg">
@@ -50,7 +75,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
         </div>
       </header>
 
-      <section className="mt-10 grid gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
+      <section className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
         <article className="space-y-8">
           {product.overview.map((block, idx) => {
             if (block.kind === "heading") {
@@ -88,7 +113,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
           })}
         </article>
 
-        <aside className="lg:sticky lg:top-24">
+        <aside className="lg:sticky lg:top-[5.5rem]">
           <ProductEnquiryForm product={product} />
         </aside>
       </section>

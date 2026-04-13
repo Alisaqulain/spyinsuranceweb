@@ -1,3 +1,20 @@
+import type { Metadata } from "next";
+import { getSiteUrl } from "../lib/site";
+
+const siteUrl = getSiteUrl();
+
+export const metadata: Metadata = {
+  title: "Testimonials",
+  description:
+    "Customer testimonials for SPRY INSURANCE PVT LTD — health, car, and life insurance broking in India.",
+  alternates: { canonical: `${siteUrl}/testimonial` },
+  openGraph: {
+    url: `${siteUrl}/testimonial`,
+    title: "Testimonials | SPRY INSURANCE PVT LTD",
+    description: "Read what clients say about our insurance support and service.",
+  },
+};
+
 export default function TestimonialPage() {
   return (
     <main className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6">

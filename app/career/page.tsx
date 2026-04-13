@@ -1,5 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { getSiteUrl } from "../lib/site";
 import { CareerApplicationForm } from "./CareerApplicationForm";
+
+const siteUrl = getSiteUrl();
+
+export const metadata: Metadata = {
+  title: "Careers",
+  description:
+    "Careers at SPRY INSURANCE PVT LTD — apply with your resume for insurance broking roles in Kolkata.",
+  alternates: { canonical: `${siteUrl}/career` },
+  openGraph: {
+    url: `${siteUrl}/career`,
+    title: "Careers | SPRY INSURANCE PVT LTD",
+    description: "Join our team. Upload your resume and we will get in touch.",
+  },
+};
 
 export default function CareerPage() {
   return (

@@ -70,7 +70,7 @@ export function HeroImageSlider({ className }: { className?: string }) {
       aria-roledescription="carousel"
       aria-label="Insurance highlights"
     >
-      <div className="relative h-full min-h-[280px] w-full lg:min-h-[min(560px,70vh)]">
+      <div className="relative h-full min-h-[240px] w-full sm:min-h-[280px] lg:min-h-[min(560px,70vh)]">
         {slides.map((slide, i) => (
           <Image
             key={slide.src}
@@ -90,27 +90,39 @@ export function HeroImageSlider({ className }: { className?: string }) {
           aria-hidden
         />
 
-        <div className="absolute bottom-4 left-4 right-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between lg:bottom-6 lg:left-6 lg:right-6">
+        <div className="absolute bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 right-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between lg:bottom-6 lg:left-6 lg:right-6">
           <p
             className="max-w-xs text-sm font-semibold text-white drop-shadow-md"
             aria-live="polite"
           >
             {slides[index].caption}
           </p>
-          <div className="flex flex-wrap justify-center gap-2 sm:justify-end">
+          <div
+            className="flex flex-wrap justify-center gap-1.5 sm:justify-end sm:gap-2"
+            role="tablist"
+            aria-label="Slide selection"
+          >
             {slides.map((_, i) => (
               <button
                 key={i}
                 type="button"
+                role="tab"
                 onClick={() => goTo(i)}
-                className={`h-2.5 rounded-full transition-all ${
-                  i === index
-                    ? "w-8 bg-[var(--brand-green)]"
-                    : "w-2.5 bg-white/50 hover:bg-white/80"
+                className={`flex min-h-11 min-w-11 items-center justify-center rounded-full p-2 touch-manipulation ${
+                  i === index ? "opacity-100" : "opacity-90"
                 }`}
                 aria-label={`Show slide ${i + 1} of ${slides.length}`}
-                aria-current={i === index}
-              />
+                aria-selected={i === index}
+              >
+                <span
+                  className={`block rounded-full transition-all ${
+                    i === index
+                      ? "h-2.5 w-8 bg-[var(--brand-green)]"
+                      : "h-2.5 w-2.5 bg-white/50 hover:bg-white/80"
+                  }`}
+                  aria-hidden
+                />
+              </button>
             ))}
           </div>
         </div>

@@ -17,17 +17,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
+  background: #ffffff;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Home: motion-safe entrance + ambient motion */
@@ -112,6 +107,12 @@ body {
   transition:
     opacity 0.78s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.78s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 639px) {
+  .scroll-fly-stagger-item {
+    transform: translate(0, 16px);
+  }
 }
 
 .scroll-fly-stagger-root[data-visible="true"] .scroll-fly-stagger-item {

@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { InsuranceProductGrid } from "./components/InsuranceProductGrid";
+import { getSiteUrl } from "./lib/site";
 import { ScrollFlyIn } from "./components/ScrollFlyIn";
 import { ScrollFlyStagger } from "./components/ScrollFlyStagger";
 import { CountUpNumber, StatsAnimatedGrid } from "./components/StatsCountUp";
@@ -10,24 +12,39 @@ import { HeroImageSlider } from "./components/HeroImageSlider";
 const PRODUCTS_HERO_IMAGE =
   "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1920&q=90";
 
+const homeUrl = getSiteUrl();
+
+export const metadata: Metadata = {
+  title: "Health, Vehicle, General & Life Insurance",
+  description:
+    "SPRY INSURANCE PVT LTD — Compare health, motor, travel, home, and life insurance in India. Expert broking in Kolkata with claim assistance and nationwide insurer partners.",
+  alternates: { canonical: homeUrl },
+  openGraph: {
+    url: homeUrl,
+    title: "SPRY INSURANCE PVT LTD | Insurance that fits your life",
+    description:
+      "Clear advice and better coverage — health, vehicle, general, and life insurance from a trusted Kolkata broker.",
+  },
+};
+
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col bg-white">
       <TopHeroSection />
 
-      <main className="mx-auto w-full px-4 py-8 sm:px-6">
+      <main className="mx-auto w-full max-w-[1920px] px-4 py-8 sm:px-6 sm:py-10">
         <MissionSection />
 
         <StatsSection />
 
         <section
           id="products"
-          className="group/products mt-20 grid gap-0 rounded-xl bg-white shadow-[0_12px_30px_rgba(16,24,40,0.08)] transition-shadow duration-500 hover:shadow-[0_20px_50px_rgba(16,24,40,0.14)] lg:grid-cols-[380px_1fr] lg:items-stretch"
+          className="group/products mt-12 scroll-mt-24 overflow-hidden rounded-xl bg-white shadow-[0_12px_30px_rgba(16,24,40,0.08)] transition-shadow duration-500 hover:shadow-[0_20px_50px_rgba(16,24,40,0.14)] sm:mt-16 lg:mt-20 lg:grid lg:grid-cols-[minmax(0,380px)_1fr] lg:items-stretch"
         >
-          {/* Left: column stretches to full right-column height (green fills). Sticky image uses full viewport below navbar. */}
-          <div className="min-h-[300px] bg-[var(--brand-green)] sm:min-h-[340px] rounded-t-xl lg:h-full lg:min-h-0 lg:rounded-l-xl lg:rounded-tr-none lg:rounded-br-none">
+          {/* Left: sticky image column — white bg so no green frame around the photo */}
+          <div className="min-h-[220px] bg-white sm:min-h-[280px] rounded-t-xl lg:h-full lg:min-h-0 lg:rounded-l-xl lg:rounded-tr-none lg:rounded-br-none">
             <div className="lg:sticky lg:top-24 lg:z-[1] lg:self-start lg:w-full">
-              <div className="relative h-[300px] overflow-hidden sm:h-[340px] lg:h-[calc(100vh-6.5rem)] lg:min-h-[500px] lg:rounded-l-xl">
+              <div className="relative h-[220px] overflow-hidden sm:h-[280px] lg:h-[calc(100vh-6.5rem)] lg:min-h-[500px] lg:rounded-l-xl">
                 <Image
                   src={PRODUCTS_HERO_IMAGE}
                   alt="Healthcare and insurance — professional care and family protection"
@@ -43,7 +60,7 @@ export default function Home() {
           </div>
 
           <ScrollFlyIn from="bottom-right" delayMs={100} className="min-h-0">
-            <div className="rounded-b-xl border-t border-zinc-100 bg-white px-5 py-8 sm:px-8 lg:border-l lg:border-t-0 lg:px-10 lg:py-10 lg:rounded-tr-xl lg:rounded-br-xl lg:rounded-bl-none">
+            <div className="rounded-b-xl border-t border-zinc-100 bg-white px-4 py-7 sm:px-8 sm:py-8 lg:border-l lg:border-t-0 lg:px-10 lg:py-10 lg:rounded-tr-xl lg:rounded-br-xl lg:rounded-bl-none">
               <InsuranceProductGrid />
             </div>
           </ScrollFlyIn>
@@ -69,34 +86,34 @@ function TopHeroSection() {
       <div className="home-float-orb-b pointer-events-none absolute bottom-0 right-1/3 h-48 w-48 rounded-full bg-[var(--brand-green)]/10 blur-3xl" />
 
       <div className="relative mx-auto grid max-w-[1920px] items-stretch lg:min-h-[min(560px,72vh)] lg:grid-cols-[1fr_min(52%,820px)]">
-        <div className="relative z-10 flex flex-col justify-center px-5 py-12 sm:px-8 sm:py-14 lg:px-12 lg:py-16 xl:px-16">
-          <p className="home-hero-enter home-hero-enter-1 text-sm font-bold tracking-wide text-[var(--brand-green)]">
-            SPRY Insurance Brokers Pvt. Ltd.
+        <div className="relative z-10 order-2 flex flex-col justify-center px-4 py-10 sm:order-1 sm:px-8 sm:py-14 lg:px-12 lg:py-16 xl:px-16">
+          <p className="home-hero-enter home-hero-enter-1 text-xs font-bold tracking-wide text-[var(--brand-green)] sm:text-sm">
+            SPRY INSURANCE PVT LTD
           </p>
-          <h1 className="home-hero-enter home-hero-enter-2 mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[2.65rem] lg:leading-[1.12]">
+          <h1 className="home-hero-enter home-hero-enter-2 mt-3 text-[1.65rem] font-extrabold leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-[2.65rem] lg:leading-[1.12]">
             Insurance that fits your life—clear advice, better coverage
           </h1>
-          <p className="home-hero-enter home-hero-enter-3 mt-5 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+          <p className="home-hero-enter home-hero-enter-3 mt-5 max-w-xl text-[15px] leading-relaxed text-white/75 sm:text-lg">
             From health to motor and life, we help you compare trusted insurers and
             choose plans with confidence. Experience the new journey with a team
             that puts you first.
           </p>
-          <div className="home-hero-enter home-hero-enter-4 mt-8 flex flex-wrap items-center gap-3">
+          <div className="home-hero-enter home-hero-enter-4 mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <Link
               href="/contact"
-              className="inline-flex h-11 items-center justify-center rounded-lg bg-[var(--brand-green)] px-6 text-sm font-bold text-[var(--brand-dark)] shadow-sm transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_8px_28px_rgba(140,198,63,0.45)] active:scale-[0.98] motion-reduce:hover:scale-100"
+              className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-[var(--brand-green)] px-6 text-sm font-bold text-[var(--brand-dark)] shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_28px_rgba(140,198,63,0.45)] active:scale-[0.98] motion-reduce:hover:scale-100 sm:h-11 sm:w-auto sm:hover:scale-[1.04]"
             >
               Talk to an expert
             </Link>
             <Link
               href="#products"
-              className="inline-flex h-11 items-center justify-center rounded-lg border border-white/25 bg-white/5 px-6 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-[var(--brand-green)]/55 hover:bg-[var(--brand-green)]/12 hover:text-white hover:shadow-[0_0_24px_rgba(140,198,63,0.2)] active:scale-[0.98] motion-reduce:hover:scale-100"
+              className="inline-flex h-12 w-full items-center justify-center rounded-lg border border-white/25 bg-white/5 px-6 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-[var(--brand-green)]/55 hover:bg-[var(--brand-green)]/12 hover:text-white hover:shadow-[0_0_24px_rgba(140,198,63,0.2)] active:scale-[0.98] motion-reduce:hover:scale-100 sm:h-11 sm:w-auto"
             >
               Browse products
             </Link>
           </div>
 
-          <div className="home-hero-enter home-hero-enter-5 mt-10 rounded-2xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-md transition-all duration-500 hover:border-[var(--brand-green)]/35 hover:bg-white/[0.1] hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)] sm:p-7">
+          <div className="home-hero-enter home-hero-enter-5 mt-8 rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-md transition-all duration-500 hover:border-[var(--brand-green)]/35 hover:bg-white/[0.1] hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)] sm:mt-10 sm:p-7">
             <p className="text-xs font-bold uppercase tracking-wider text-[var(--brand-green)]">
               Why clients choose us
             </p>
@@ -117,7 +134,7 @@ function TopHeroSection() {
           </div>
         </div>
 
-        <div className="relative flex min-h-[300px] w-full lg:min-h-0 lg:h-full">
+        <div className="relative order-1 flex min-h-[240px] w-full sm:order-2 sm:min-h-[300px] lg:min-h-0 lg:h-full">
           <div
             className="pointer-events-none absolute inset-y-0 left-0 z-[1] hidden w-16 bg-gradient-to-r from-[var(--brand-dark)] to-transparent sm:w-20 lg:block"
             aria-hidden
@@ -241,7 +258,7 @@ function MissionSection() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-3 md:gap-5 lg:gap-8">
           <ScrollFlyIn delayMs={0} from="bottom-right">
-            <article className="group/mission relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl bg-[#ECEEF2] p-7 pt-8 shadow-sm ring-1 ring-black/5 transition-all duration-500 motion-safe:hover:-translate-y-2 motion-safe:hover:bg-[var(--brand-dark)] motion-safe:hover:shadow-[0_28px_56px_rgba(0,0,0,0.45)] motion-safe:hover:ring-2 motion-safe:hover:ring-[var(--brand-green)]/55 sm:min-h-[340px] sm:p-8">
+            <article className="group/mission relative flex min-h-0 flex-col overflow-hidden rounded-2xl bg-[#ECEEF2] p-6 pt-7 shadow-sm ring-1 ring-black/5 transition-all duration-500 motion-safe:hover:-translate-y-2 motion-safe:hover:bg-[var(--brand-dark)] motion-safe:hover:shadow-[0_28px_56px_rgba(0,0,0,0.45)] motion-safe:hover:ring-2 motion-safe:hover:ring-[var(--brand-green)]/55 sm:min-h-[320px] sm:p-8 sm:pt-8 md:min-h-[340px]">
             <span
               className="pointer-events-none absolute left-5 top-4 text-7xl font-extrabold leading-none text-white transition-all duration-500 motion-safe:group-hover/mission:scale-105 group-hover/mission:text-[#3a4160] sm:left-6 sm:text-8xl"
               aria-hidden
@@ -265,7 +282,7 @@ function MissionSection() {
           </ScrollFlyIn>
 
           <ScrollFlyIn delayMs={120} from="bottom">
-            <article className="group/mission relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl bg-[var(--brand-dark)] p-7 pt-8 shadow-md transition-all duration-500 motion-safe:hover:-translate-y-2 motion-safe:hover:shadow-[0_28px_56px_rgba(0,0,0,0.45)] motion-safe:hover:ring-2 motion-safe:hover:ring-[var(--brand-green)]/55 sm:min-h-[340px] sm:p-8">
+            <article className="group/mission relative flex min-h-0 flex-col overflow-hidden rounded-2xl bg-[var(--brand-dark)] p-6 pt-7 shadow-md transition-all duration-500 motion-safe:hover:-translate-y-2 motion-safe:hover:shadow-[0_28px_56px_rgba(0,0,0,0.45)] motion-safe:hover:ring-2 motion-safe:hover:ring-[var(--brand-green)]/55 sm:min-h-[320px] sm:p-8 sm:pt-8 md:min-h-[340px]">
             <span
               className="pointer-events-none absolute left-5 top-4 text-7xl font-extrabold leading-none text-[#3a4160] transition-transform duration-700 motion-safe:group-hover/mission:scale-105 sm:left-6 sm:text-8xl"
               aria-hidden
@@ -289,7 +306,7 @@ function MissionSection() {
           </ScrollFlyIn>
 
           <ScrollFlyIn delayMs={240} from="bottom-left">
-            <article className="group/mission relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl bg-[#ECEEF2] p-7 pt-8 shadow-sm ring-1 ring-black/5 transition-all duration-500 motion-safe:hover:-translate-y-2 motion-safe:hover:bg-[var(--brand-dark)] motion-safe:hover:shadow-[0_28px_56px_rgba(0,0,0,0.45)] motion-safe:hover:ring-2 motion-safe:hover:ring-[var(--brand-green)]/55 sm:min-h-[340px] sm:p-8">
+            <article className="group/mission relative flex min-h-0 flex-col overflow-hidden rounded-2xl bg-[#ECEEF2] p-6 pt-7 shadow-sm ring-1 ring-black/5 transition-all duration-500 motion-safe:hover:-translate-y-2 motion-safe:hover:bg-[var(--brand-dark)] motion-safe:hover:shadow-[0_28px_56px_rgba(0,0,0,0.45)] motion-safe:hover:ring-2 motion-safe:hover:ring-[var(--brand-green)]/55 sm:min-h-[320px] sm:p-8 sm:pt-8 md:min-h-[340px]">
             <span
               className="pointer-events-none absolute left-5 top-4 text-7xl font-extrabold leading-none text-white transition-all duration-500 motion-safe:group-hover/mission:scale-105 group-hover/mission:text-[#3a4160] sm:left-6 sm:text-8xl"
               aria-hidden

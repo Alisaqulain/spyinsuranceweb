@@ -1,4 +1,20 @@
+import type { Metadata } from "next";
+import { getSiteUrl } from "../lib/site";
 import { ContactForm } from "./ui/ContactForm";
+
+const siteUrl = getSiteUrl();
+
+export const metadata: Metadata = {
+  title: "Contact us",
+  description:
+    "Contact SPRY INSURANCE PVT LTD for health, vehicle, life, and general insurance quotes and support in Kolkata and across India.",
+  alternates: { canonical: `${siteUrl}/contact` },
+  openGraph: {
+    url: `${siteUrl}/contact`,
+    title: "Contact SPRY INSURANCE PVT LTD",
+    description: "Get in touch for insurance quotes, renewals, and guidance.",
+  },
+};
 
 export default function ContactPage() {
   return (

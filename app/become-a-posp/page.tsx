@@ -1,4 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { getSiteUrl } from "../lib/site";
+
+const siteUrl = getSiteUrl();
+
+export const metadata: Metadata = {
+  title: "Become a POSP",
+  description:
+    "Partner with SPRY INSURANCE PVT LTD as a POSP. Contact us to learn about onboarding and support.",
+  alternates: { canonical: `${siteUrl}/become-a-posp` },
+  openGraph: {
+    url: `${siteUrl}/become-a-posp`,
+    title: "Become a POSP | SPRY INSURANCE PVT LTD",
+    description: "Start your POSP journey with SPRY.",
+  },
+};
 
 export default function BecomeAPospPage() {
   return (
