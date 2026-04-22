@@ -117,7 +117,7 @@ export const insuranceSections: { title: string; items: InsuranceItem[] }[] = [
         quoteImage: "/image_5.png",
       },
       {
-        label: "Home Insurance",
+        label: "Home Insurance (Agreed Value & Reinstate Value)",
         slug: "home-insurance",
         href: "/products/home-insurance",
         icon: "home",
@@ -223,7 +223,8 @@ export function formatCardLabel(label: string) {
     "Commercial Vehicle": "Commercial\nVehicle",
     "Passenger Carrying Vehicle": "Passenger\nCarrying\nVehicle",
     "Travel Insurance": "Travel\nInsurance",
-    "Home Insurance": "Home\nInsurance",
+    "Home Insurance (Agreed Value & Reinstate Value)":
+      "Home\nInsurance\n(Agreed Value &\nReinstate Value)",
     "Business Insurance": "Business\nInsurance",
     "Marine Insurance": "Marine\nInsurance",
     "Public Liability": "Public\nLiability",

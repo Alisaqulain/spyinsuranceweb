@@ -178,7 +178,7 @@ function TopHeroPoint({ title, body }: { title: string; body: string }) {
 }
 
 /** Partner logos in `public/partners/partner-01.png` … (sequential, no duplicates). */
-const PARTNER_LOGO_COUNT = 27;
+const PARTNER_LOGO_COUNT = 21;
 
 const partnerLogos = Array.from({ length: PARTNER_LOGO_COUNT }, (_, i) => {
   const n = String(i + 1).padStart(2, "0");
@@ -204,7 +204,7 @@ function PartnersSection() {
               id="partners-heading"
               className="mt-3 text-3xl font-extrabold tracking-tight text-[var(--brand-dark)] sm:text-4xl lg:text-[2.5rem] lg:leading-tight"
             >
-              Backed By Top Tier Partners
+              Backed By Partners
             </h2>
           </header>
         </ScrollFlyIn>
@@ -408,7 +408,7 @@ function AboutSection() {
               SPRY Insurance Brokers Pvt. Ltd.
             </strong>{" "}
             was established in December 2008. The company was introduced in India
-            in 2021 in accordance with IRDAI regulations. Headquartered in Kolkata,
+            in 2024 in accordance with IRDAI regulations. Headquartered in Kolkata,
             SPRY focuses on serving clients across the eastern region with
             reliable broking services.
           </p>
@@ -584,13 +584,13 @@ function StatsSection() {
             </span>
           </div>
           <CountUpNumber
-            target={50000}
-            suffix="+"
+            target={10}
+            suffix="Cr+"
             delayMs={320}
             className="mt-6 text-4xl font-extrabold text-white transition-colors duration-300 group-hover/stat:text-[var(--brand-green)] sm:text-5xl"
           />
           <p className="mt-2 text-base font-normal text-white/90">
-            Life Insurance
+            Claims
           </p>
         </div>
         </ScrollFlyIn>

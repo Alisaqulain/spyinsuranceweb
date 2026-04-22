@@ -7,6 +7,7 @@ import { useEffect, useId, useState } from "react";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/#products", label: "Products" },
+  { href: "/become-a-posp", label: "Become a POSP", highlight: true },
   { href: "/career", label: "Career" },
   { href: "/contact", label: "Contact Us" },
   { href: "/testimonial", label: "Testimonial" },
@@ -59,7 +60,15 @@ export function Navbar() {
           aria-label="Main"
         >
           {navLinks.map((l) => (
-            <Link key={l.href} href={l.href} className="hover:text-zinc-950">
+            <Link
+              key={l.href}
+              href={l.href}
+              className={
+                l.highlight
+                  ? "inline-flex items-center rounded-md bg-[#8cc63f] px-3 py-1.5 font-bold text-[#2f3646] shadow-[0_2px_12px_rgba(140,198,63,0.45)] ring-1 ring-[#7ab835] transition hover:bg-[#9ad148]"
+                  : "hover:text-zinc-950"
+              }
+            >
               {l.label}
             </Link>
           ))}
@@ -160,7 +169,11 @@ export function Navbar() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="flex min-h-12 items-center rounded-lg px-4 py-3 text-[15px] font-semibold text-zinc-800 hover:bg-[var(--brand-muted)]"
+                    className={
+                      l.highlight
+                        ? "flex min-h-12 items-center rounded-lg bg-[#8cc63f] px-4 py-3 text-[15px] font-bold text-[#2f3646] shadow-sm"
+                        : "flex min-h-12 items-center rounded-lg px-4 py-3 text-[15px] font-semibold text-zinc-800 hover:bg-[var(--brand-muted)]"
+                    }
                     onClick={() => setOpen(false)}
                   >
                     {l.label}
