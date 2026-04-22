@@ -4,14 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 
-const navLinks = [
+type NavLink = {
+  href: string;
+  label: string;
+  highlight?: boolean;
+};
+
+const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/#products", label: "Products" },
   { href: "/become-a-posp", label: "Become a POSP", highlight: true },
   { href: "/career", label: "Career" },
   { href: "/contact", label: "Contact Us" },
   { href: "/testimonial", label: "Testimonial" },
-] as const;
+];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
