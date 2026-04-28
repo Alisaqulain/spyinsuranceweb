@@ -385,7 +385,7 @@ function PartnersSection() {
               {generalInsurancePartners.map((partner) => (
                 <li
                   key={partner.name}
-                  className="group/partner relative rounded-xl border border-zinc-200/80 bg-white p-4 shadow-sm transition-all duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:border-[var(--brand-green)]/45 motion-safe:hover:shadow-[0_16px_36px_rgba(47,54,70,0.12)]"
+                  className="group/partner relative rounded-2xl border border-zinc-200/90 bg-white p-4 shadow-[0_8px_20px_rgba(16,24,40,0.06)] ring-1 ring-transparent transition-all duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:border-[var(--brand-green)]/45 motion-safe:hover:ring-[var(--brand-green)]/20 motion-safe:hover:shadow-[0_18px_42px_rgba(47,54,70,0.14)]"
                 >
                   <a
                     href={partner.website}
@@ -400,7 +400,7 @@ function PartnersSection() {
                       loading="lazy"
                       width={220}
                       height={96}
-                      className="h-[72px] w-full object-contain grayscale transition duration-300 motion-safe:group-hover/partner:scale-[1.05] motion-safe:group-hover/partner:grayscale-0"
+                      className="h-[72px] w-full object-contain transition duration-300 motion-safe:group-hover/partner:scale-[1.05]"
                     />
                     <span className="line-clamp-2 text-center text-xs font-semibold text-zinc-600 sm:text-sm">
                       {partner.name}
@@ -419,7 +419,7 @@ function PartnersSection() {
               {lifeInsurancePartners.map((partner) => (
                 <li
                   key={partner.name}
-                  className="group/partner relative rounded-xl border border-zinc-200/80 bg-white p-4 shadow-sm transition-all duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:border-[var(--brand-green)]/45 motion-safe:hover:shadow-[0_16px_36px_rgba(47,54,70,0.12)]"
+                  className="group/partner relative rounded-2xl border border-zinc-200/90 bg-white p-4 shadow-[0_8px_20px_rgba(16,24,40,0.06)] ring-1 ring-transparent transition-all duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:border-[var(--brand-green)]/45 motion-safe:hover:ring-[var(--brand-green)]/20 motion-safe:hover:shadow-[0_18px_42px_rgba(47,54,70,0.14)]"
                 >
                   <a
                     href={partner.website}
@@ -434,7 +434,7 @@ function PartnersSection() {
                       loading="lazy"
                       width={220}
                       height={96}
-                      className="h-[72px] w-full object-contain grayscale transition duration-300 motion-safe:group-hover/partner:scale-[1.05] motion-safe:group-hover/partner:grayscale-0"
+                      className="h-[72px] w-full object-contain transition duration-300 motion-safe:group-hover/partner:scale-[1.05]"
                     />
                     <span className="line-clamp-2 text-center text-xs font-semibold text-zinc-600 sm:text-sm">
                       {partner.name}
