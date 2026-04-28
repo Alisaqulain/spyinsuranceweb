@@ -177,59 +177,274 @@ function TopHeroPoint({ title, body }: { title: string; body: string }) {
   );
 }
 
-/** Partner logos in `public/partners/partner-01.png` … (sequential, no duplicates). */
-const PARTNER_LOGO_COUNT = 21;
+type PartnerCompany = {
+  name: string;
+  logoSrc: string;
+  alt: string;
+  website: string;
+};
 
-const partnerLogos = Array.from({ length: PARTNER_LOGO_COUNT }, (_, i) => {
-  const n = String(i + 1).padStart(2, "0");
-  return {
-    src: `/partners/partner-${n}.png`,
-    alt: `Insurance partner — logo ${i + 1}`,
-  };
-});
+const generalInsurancePartners: PartnerCompany[] = [
+  {
+    name: "Tata AIG General Insurance Company Limited",
+    logoSrc: "/partners/partner-09.png",
+    alt: "Tata AIG General Insurance Partner",
+    website: "https://www.tataaig.com",
+  },
+  {
+    name: "Future Generali India Insurance Company Limited",
+    logoSrc: "/partners/partner-17.png",
+    alt: "Future Generali General Insurance Partner",
+    website: "https://www.futuregenerali.in",
+  },
+  {
+    name: "Go Digit General Insurance Limited",
+    logoSrc: "https://logo.clearbit.com/godigit.com",
+    alt: "Go Digit General Insurance Partner",
+    website: "https://www.godigit.com",
+  },
+  {
+    name: "National Insurance Company Limited",
+    logoSrc: "/partners/partner-06.png",
+    alt: "National Insurance Company Partner",
+    website: "https://nationalinsurance.nic.co.in",
+  },
+  {
+    name: "Magma General Insurance Ltd",
+    logoSrc: "https://logo.clearbit.com/magmahdi.com",
+    alt: "Magma General Insurance Partner",
+    website: "https://www.magmahdi.com",
+  },
+  {
+    name: "HDFC Ergo General Insurance Company Ltd",
+    logoSrc: "/partners/partner-18.png",
+    alt: "HDFC Ergo General Insurance Partner",
+    website: "https://www.hdfcergo.com",
+  },
+  {
+    name: "Royal Sundaram General Insurance Co. Ltd",
+    logoSrc: "https://logo.clearbit.com/royalsundaram.in",
+    alt: "Royal Sundaram General Insurance Partner",
+    website: "https://www.royalsundaram.in",
+  },
+  {
+    name: "Zurich Kotak General Insurance Co. (India) Ltd",
+    logoSrc: "https://logo.clearbit.com/kotakgeneral.com",
+    alt: "Zurich Kotak General Insurance Partner",
+    website: "https://www.kotakgeneral.com",
+  },
+  {
+    name: "Zuno General Insurance Co Ltd",
+    logoSrc: "https://logo.clearbit.com/zuno.in",
+    alt: "Zuno General Insurance Partner",
+    website: "https://www.zuno.in",
+  },
+  {
+    name: "Bajaj Allianz General Insurance Co Ltd",
+    logoSrc: "/partners/partner-10.png",
+    alt: "Bajaj Allianz General Insurance Partner",
+    website: "https://www.bajajallianz.com",
+  },
+  {
+    name: "The New India Assurance Co. Ltd.",
+    logoSrc: "https://logo.clearbit.com/newindia.co.in",
+    alt: "New India Assurance Partner",
+    website: "https://www.newindia.co.in",
+  },
+  {
+    name: "SBI General Insurance Company Limited",
+    logoSrc: "https://logo.clearbit.com/sbigeneral.in",
+    alt: "SBI General Insurance Partner",
+    website: "https://www.sbigeneral.in",
+  },
+  {
+    name: "Reliance General Insurance Co Ltd",
+    logoSrc: "/partners/partner-08.png",
+    alt: "Reliance General Insurance Partner",
+    website: "https://www.reliancegeneral.co.in",
+  },
+  {
+    name: "Care Health Insurance Ltd",
+    logoSrc: "/partners/partner-15.png",
+    alt: "Care Health Insurance Partner",
+    website: "https://www.careinsurance.com",
+  },
+  {
+    name: "Niva Bupa Health Insurance Company Ltd",
+    logoSrc: "https://logo.clearbit.com/nivabupa.com",
+    alt: "Niva Bupa Health Insurance Partner",
+    website: "https://www.nivabupa.com",
+  },
+  {
+    name: "Liberty General Insurance Ltd",
+    logoSrc: "https://logo.clearbit.com/libertyinsurance.in",
+    alt: "Liberty General Insurance Partner",
+    website: "https://www.libertyinsurance.in",
+  },
+  {
+    name: "Star Health & Allied Insurance Co. Ltd",
+    logoSrc: "https://logo.clearbit.com/starhealth.in",
+    alt: "Star Health Insurance Partner",
+    website: "https://www.starhealth.in",
+  },
+  {
+    name: "ICICI Lombard General Insurance Co Ltd",
+    logoSrc: "https://logo.clearbit.com/icicilombard.com",
+    alt: "ICICI Lombard General Insurance Partner",
+    website: "https://www.icicilombard.com",
+  },
+  {
+    name: "Shriram General Insurance Company Limited",
+    logoSrc: "https://logo.clearbit.com/shriramgi.com",
+    alt: "Shriram General Insurance Partner",
+    website: "https://www.shriramgi.com",
+  },
+  {
+    name: "Universal Sompo General Insurance",
+    logoSrc: "https://logo.clearbit.com/universalsompo.com",
+    alt: "Universal Sompo General Insurance Partner",
+    website: "https://www.universalsompo.com",
+  },
+];
+
+const lifeInsurancePartners: PartnerCompany[] = [
+  {
+    name: "Axis Max Life Insurance",
+    logoSrc: "/partners/partner-23.png",
+    alt: "Axis Max Life Insurance Partner",
+    website: "https://www.maxlifeinsurance.com",
+  },
+  {
+    name: "Bajaj Allianz Life Insurance",
+    logoSrc: "https://logo.clearbit.com/bajajallianzlife.com",
+    alt: "Bajaj Allianz Life Insurance Partner",
+    website: "https://www.bajajallianzlife.com",
+  },
+  {
+    name: "Tata AIA Life Insurance",
+    logoSrc: "https://logo.clearbit.com/tataaia.com",
+    alt: "Tata AIA Life Insurance Partner",
+    website: "https://www.tataaia.com",
+  },
+  {
+    name: "HDFC Life Insurance",
+    logoSrc: "/partners/partner-19.png",
+    alt: "HDFC Life Insurance Partner",
+    website: "https://www.hdfclife.com",
+  },
+];
 
 function PartnersSection() {
+  const partnerSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "SPRY Insurance Pvt Ltd",
+    url: homeUrl,
+    memberOf: [...generalInsurancePartners, ...lifeInsurancePartners].map(
+      (partner) => ({
+        "@type": "Organization",
+        name: partner.name,
+        url: partner.website,
+      }),
+    ),
+  };
+
   return (
     <section
       className="mt-16 w-full rounded-2xl bg-[var(--brand-muted)] px-4 py-14 sm:px-8 sm:py-16"
       aria-labelledby="partners-heading"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(partnerSchema) }}
+      />
       <div className="mx-auto max-w-[1400px]">
         <ScrollFlyIn from="bottom">
           <header className="text-center">
             <p className="text-sm font-bold tracking-wide text-[var(--brand-green)] sm:text-base">
-              THEY BELIEVE IN US
+              They Believe In Us
             </p>
             <h2
               id="partners-heading"
               className="mt-3 text-3xl font-extrabold tracking-tight text-[var(--brand-dark)] sm:text-4xl lg:text-[2.5rem] lg:leading-tight"
             >
-              Backed By Partners
+              Trusted Insurance Partners in India
             </h2>
+            <p className="mt-3 text-sm font-medium text-zinc-600 sm:text-base">
+              Backed by Leading Insurance Partners
+            </p>
           </header>
         </ScrollFlyIn>
 
-        <ScrollFlyStagger
-          className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
-          staggerMs={42}
-        >
-          {partnerLogos.map((logo) => (
-            <div
-              key={logo.src}
-              className="group/partner relative flex h-[92px] items-center justify-center rounded-xl border border-zinc-200/80 bg-white px-4 py-5 shadow-sm transition-all duration-300 motion-safe:hover:-translate-y-1.5 motion-safe:hover:scale-[1.04] motion-safe:hover:border-[var(--brand-green)]/45 motion-safe:hover:shadow-[0_16px_36px_rgba(47,54,70,0.12)] sm:h-[104px]"
-            >
-              <div className="relative h-14 w-full transition-transform duration-[400ms] motion-safe:group-hover/partner:scale-110 sm:h-16">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  fill
-                  className="object-contain"
-                  sizes="(min-width: 1024px) 200px, (min-width: 768px) 25vw, 45vw"
-                />
-              </div>
-            </div>
-          ))}
-        </ScrollFlyStagger>
+        <div className="mt-10 space-y-10">
+          <ScrollFlyStagger className="space-y-5" staggerMs={42}>
+            <h3 className="text-lg font-bold text-[var(--brand-dark)] sm:text-xl">
+              General Insurance
+            </h3>
+            <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+              {generalInsurancePartners.map((partner) => (
+                <li
+                  key={partner.name}
+                  className="group/partner relative rounded-xl border border-zinc-200/80 bg-white p-4 shadow-sm transition-all duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:border-[var(--brand-green)]/45 motion-safe:hover:shadow-[0_16px_36px_rgba(47,54,70,0.12)]"
+                >
+                  <a
+                    href={partner.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-full min-h-[128px] flex-col items-center justify-center gap-3"
+                    aria-label={`${partner.name} official website`}
+                  >
+                    <img
+                      src={partner.logoSrc}
+                      alt={partner.alt}
+                      loading="lazy"
+                      width={220}
+                      height={96}
+                      className="h-[72px] w-full object-contain grayscale transition duration-300 motion-safe:group-hover/partner:scale-[1.05] motion-safe:group-hover/partner:grayscale-0"
+                    />
+                    <span className="line-clamp-2 text-center text-xs font-semibold text-zinc-600 sm:text-sm">
+                      {partner.name}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </ScrollFlyStagger>
+
+          <ScrollFlyStagger className="space-y-5" staggerMs={42}>
+            <h3 className="text-lg font-bold text-[var(--brand-dark)] sm:text-xl">
+              Life Insurance
+            </h3>
+            <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+              {lifeInsurancePartners.map((partner) => (
+                <li
+                  key={partner.name}
+                  className="group/partner relative rounded-xl border border-zinc-200/80 bg-white p-4 shadow-sm transition-all duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:border-[var(--brand-green)]/45 motion-safe:hover:shadow-[0_16px_36px_rgba(47,54,70,0.12)]"
+                >
+                  <a
+                    href={partner.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-full min-h-[128px] flex-col items-center justify-center gap-3"
+                    aria-label={`${partner.name} official website`}
+                  >
+                    <img
+                      src={partner.logoSrc}
+                      alt={partner.alt}
+                      loading="lazy"
+                      width={220}
+                      height={96}
+                      className="h-[72px] w-full object-contain grayscale transition duration-300 motion-safe:group-hover/partner:scale-[1.05] motion-safe:group-hover/partner:grayscale-0"
+                    />
+                    <span className="line-clamp-2 text-center text-xs font-semibold text-zinc-600 sm:text-sm">
+                      {partner.name}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </ScrollFlyStagger>
+        </div>
       </div>
     </section>
   );
